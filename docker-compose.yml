@@ -1,0 +1,64 @@
+version: '3'
+services:
+
+ mysql:
+   platform: linux/x86_64
+   image: mysql:5.7
+   container_name: api-mysql
+   volumes:
+    - "./.data/mysql:/var/lib/mysql"
+   restart: always
+   environment:
+    MYSQL_ROOT_PASSWORD: root
+   networks:
+    - docker-networks-api
+
+ phpmyadmin:
+   depends_on:
+    - mysql
+   image: phpmyadmin/phpmyadmin
+   container_name: api-phpmyadmin
+   environment:
+    - PMA_HOST=api-mysql
+   restart: always
+   ports:
+    - "3000:80"
+   networks:
+    - docker-networks-api
+
+ api:
+   build: .webserver
+   container_name: api
+   volumes:
+    - "./api:/var/www/api"
+    - "./.webserver:/etc/apache2/sites-enabled"
+   ports:
+    - 8000:80
+   restart: always
+   depends_on:
+    - mysql
+   networks:
+    docker-networks-api:
+    
+ client:
+   image: client
+   container_name: client
+   build:
+    context: client
+    dockerfile: ./Dockerfile
+   ports:
+    - 80:3000
+   init: true
+   volumes:
+    - ./client:/usr/src/app
+    - client-node-modules:/usr/src/app/node_modules
+   networks:
+    - docker-networks-api
+
+networks:
+ docker-networks-api:
+
+volumes:
+ client-node-modules:
+ 
+# ★ 他の仮想環境でport番号 "80" と "8000" と "3000" を使ってる場合は適宜変更してください ★ 
