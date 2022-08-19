@@ -23,7 +23,7 @@ export default function Login() {
     const loginParams: LoginParams = { email, password }
     axios
       // CSRF保護の初期化
-      .get('http://localhost:8000/sanctum/csrf-cookie', {headers: { 'X-Requested-With': 'XMLHttpRequest' }}, { withCredentials: true })
+      .get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
       .then((response) => {
 　　　　　// ログイン処理
         axios
