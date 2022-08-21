@@ -27,39 +27,9 @@ export const Home = ({ posts }: Props) => {
         ▽ 記事一覧  ▽
       ---------------------------------------------------------- */}
       <h2 className="sttl">new Blog</h2>
-      <Articles
-        posts={posts}
-        slug={`blog`}
-        total={0}
-        currentNum={0}
-        postDetail={undefined}
-        id={""}
-      />
 
     </Layout>
   );
-};
-
-export const getStaticProps = async () => {
-
-  /* -------------------------------------------------------
-    ▽ 記事情報の取得  ▽
-  ---------------------------------------------------------- */
-  const now = new Date();
-  const clear = `${now.getHours()}${now.getMinutes()}${now.getSeconds()}`;
-  const res = await fetch(
-    `${process.env.MICROCMS_HOST}/api/v1/blogs?limit=6&cache=${clear}`, {
-    method: "GET",
-    headers: {
-      "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY,
-    }
-  });
-  const json = await res.json();
-  return {
-    props: {
-      posts: json.contents,
-    },
-  };
 };
 
 export default Home;

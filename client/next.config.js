@@ -9,7 +9,7 @@ const nextConfig = {
     DEFAULT_DES: 'デフォルトディスクリプション',
     DEFAULT_KEY: 'デフォルトキー',
     DEFAULT_THUM: '/ogp.jpg',
-    MICROCMS_HOST: 'https://emptyservice.microcms.io', // API取得先
+    API_HOST: 'http://localhost:8000', // API取得先
     MICROCMS_API_KEY: '25428d9c98a04363bc1305d0b293978ab774', // 取得先のAPI KEY
     NEXT_PUBLIC_GA_ID: 'UA-********-**' // GAのトラッキングID (例:UA-********-**)
   },

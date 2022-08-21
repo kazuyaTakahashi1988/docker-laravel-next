@@ -1,14 +1,14 @@
-// ログインページ
-
 import axios from 'axios'
 import { ChangeEvent, useState } from 'react'
+import { Props } from "../lib/props"
+import Layout from "../components/layout"
 
 type LoginParams = {
   email: string
   password: string
 }
 
-export default function Login() {
+export const Login = ({ posts }: Props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -23,16 +23,16 @@ export default function Login() {
     const loginParams: LoginParams = { email, password }
     axios
       // CSRF保護の初期化
-      .get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true })
-      .then((response) => {
-　　　　　// ログイン処理
+      .get(`${process.env.API_HOST}/sanctum/csrf-cookie`, { withCredentials: true })
+      .then(() => {
+        // ログイン処理
         axios
           .post(
-            'http://localhost:8000/login',
+            `${process.env.API_HOST}/login`,
             loginParams,
             { withCredentials: true }
           )
-          .then((response) => {
+          .then((response: { data: any }) => {
             console.log(response.data)
           })
       })
@@ -40,13 +40,28 @@ export default function Login() {
 
   // SPA認証済みではないとアクセスできないAPI
   const handleUserClick = () => {
-    axios.get('http://localhost:8000/api/user', { withCredentials: true }).then((response) => {
+    axios.get(`${process.env.API_HOST}/api/user`, { withCredentials: true }).then((response: { data: any }) => {
       console.log(response.data)
     })
   }
 
   return (
-    <>
+    <Layout
+      /* -------------------------------------------------------
+        ▽ 固有 meta ▽
+      ---------------------------------------------------------- */
+      pageTtl="Loginのタイトル"
+      // pageDes=""
+      // pageUrl=""
+      // pageKey=""
+      // pageThum=""
+      pageType="login"
+    >
+
+      {/* -------------------------------------------------------
+        ▽ 記事一覧  ▽
+      ---------------------------------------------------------- */}
+
       <div>
         メールアドレス
         <input onChange={changeEmail} />
@@ -61,6 +76,9 @@ export default function Login() {
       <div>
         <button onClick={handleUserClick}>ユーザー情報を取得</button>
       </div>
-    </>
-  )
-}
+
+    </Layout>
+  );
+};
+
+export default Login;
