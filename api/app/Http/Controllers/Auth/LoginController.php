@@ -24,4 +24,24 @@ class LoginController extends Controller
 
         throw new Exception('ログインに失敗しました。再度お試しください');
     }
+    /**
+     * ログアウトテスト
+     */
+    public function logout(Request $request)
+    {
+        // return response(['message' => 'You have been successfully logged out.'], 200);
+        // return response()->json(['name' => Auth::user()->email], 200);
+        // logout
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->json(true);
+        // Auth::guard('web')->logout();
+        // $request->session()->invalidate();
+        // $request->session()->regenerateToken();
+        // return response()->json(true);
+    }
 }

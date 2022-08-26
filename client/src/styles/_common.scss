@@ -7,7 +7,7 @@ header {
   width: 100%;
   margin: 0;
   background: #fff;
-  border-bottom: 3px solid #2b2c30;
+  border-bottom: 3px solid #FF2D20;
   position: fixed;
   top: 0;
   left: 0;
@@ -25,7 +25,7 @@ header {
     .logo_area{
       float: left;
       max-width: 200px;
-      width: 200px;
+      width: 100%;
       padding: 0 0 0 30px;
     }
     .right_clmn{
@@ -35,19 +35,19 @@ header {
         display:inline-block;
         text-align: center;
         &.current a{
-          color: #331cbf;
-          background: #e7e7f3;
+          background: #FDF5E6;
           opacity: 1!important;
         }
         a{
           display: block;
-          padding: 15px 20px;
+          padding: 20px;
           position: relative;
-          font-size: 20px;
+          font-size: 16px;
           transition: 0.4s;
           font-weight: 500;
+          color: #e1122a;
           &:hover{
-            // color: #2b2c30;
+            // color: #FF2D20;
           }
         }
       }
@@ -60,7 +60,7 @@ header {
 ========================================================= */
 footer {
   width: 100%;
-  background: #e7e7f3;
+  background: #FDF5E6;
   padding: 50px;
   margin: 50px auto 0;
 } // footer END
@@ -78,21 +78,25 @@ footer {
     padding: 50px 20px 0;
     min-height: 100vh;
     opacity: 0;
-    transform: translateY(20px);
-    transition: 0.8s;
+    // transform: translateY(20px);
+    transform: scale(1.05,1.05);
+    transition: 0.6s;
   }
   &.active main{
     opacity: 1;
-    transform: translateY(0);
+    // transform: translateY(0);
+    transform: scale(1,1);
   }
   .sttl{
-    background: #e7e7f3;
+    background: #FDF5E6;
     text-align: left;
     padding: 10px 10px 10px 20px;
     text-align: left;
     margin-bottom: 30px;
-    border-left: 20px solid #2b2c30;
+    border-left: 20px solid #FF2D20;
     border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: 700;
   }
   .postList{
     display: -webkit-box;
@@ -108,7 +112,7 @@ footer {
       }
       a{
         display: block;
-        background: #2b2c30;
+        background: #FF2D20;
         color: #fff;
         transition: 0.4s;
         border-radius: 5px;
@@ -157,14 +161,14 @@ footer {
       &.current{
         pointer-events: none;
         a{
-          color: #2b2c30;
+          color: #FF2D20;
           background: #fff;
         }
       }
       a{
         display: block;
-        background: #2b2c30;
-        border: 2px solid #2b2c30;
+        background: #FF2D20;
+        border: 2px solid #FF2D20;
         width: 40px;
         height: 40px;
         transition: 0.4s;
@@ -182,7 +186,7 @@ footer {
     }
     .cate{
       span{
-        color: #2b2c30;
+        color: #FF2D20;
       }
       a{
         pointer-events: none;
@@ -190,7 +194,7 @@ footer {
         transition: 0.4s;
         padding: 0 3px;
         &:hover{
-          color: #2b2c30;
+          color: #FF2D20;
         }
       }
     }
@@ -207,7 +211,7 @@ footer {
         width: 200px;
         position: relative;
         overflow: hidden;
-        background: #e7e7f3;
+        background: #FDF5E6;
         font-size: 14px;
         font-weight: 700;
         padding: 10px;
@@ -249,7 +253,7 @@ footer {
       .ttl {
         font-size: 16px;
         font-weight: 500;
-        border-left: 15px solid #2b2c30;
+        border-left: 15px solid #FF2D20;
         border-radius: 5px;
         background: #fff;
         padding: 5px 0 5px 20px;

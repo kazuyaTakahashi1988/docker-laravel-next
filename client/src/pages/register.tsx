@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ChangeEvent, useState } from 'react'
+import { useRouter } from 'next/router';
 import { Props } from "../lib/props"
 import Layout from "../components/layout"
 
@@ -11,6 +12,7 @@ type registerParams = {
 }
 
 export const Register = ({ posts }: Props) => {
+    const router = useRouter();
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -43,7 +45,8 @@ export const Register = ({ posts }: Props) => {
                         { withCredentials: true }
                     )
                     .then((response: { data: any }) => {
-                        console.log(response.data)
+                        // console.log(response.data)
+                        router.push('/');
                     })
             })
     }
@@ -58,7 +61,7 @@ export const Register = ({ posts }: Props) => {
     return (
         <Layout
             /* -------------------------------------------------------
-              ▽ 固有 meta ▽
+            ▽ 固有 meta ▽
             ---------------------------------------------------------- */
             pageTtl="registerのタイトル"
             // pageDes=""
@@ -69,30 +72,43 @@ export const Register = ({ posts }: Props) => {
         >
 
             {/* -------------------------------------------------------
-        ▽ 記事一覧  ▽
-      ---------------------------------------------------------- */}
+            ▽ アカウント作成・フォーム  ▽
+        ---------------------------------------------------------- */}
 
-            <div>
-                名前
-                <input onChange={changeName} />
-            </div>
-            <div>
-                メールアドレス
-                <input onChange={changeEmail} />
-            </div>
-            <div>
-                パスワード
-                <input onChange={changePassword} />
-            </div>
-            <div>
-                パスワード確認
-                <input onChange={changePasswordConform} />
-            </div>
-            <div>
-                <button onClick={handleClick}>作成</button>
-            </div>
-            <div>
-                <button onClick={handleUserClick}>ユーザー情報を取得</button>
+            <h2 className="sttl font-semibold text-xl mb-3">アカウント作成・フォーム</h2>
+            <div className="text-left">
+                <div className="card-body">
+                    <div className="form-group row">
+                        <label for="name" className="col-md-4 col-form-label text-md-right">名前</label>
+                        <div className="col-md-6">
+                            <input id="name" className="form-control" type="text" onChange={changeName} />
+                        </div>
+                    </div>
+                    <div className="form-group row mb-4">
+                        <label for="email" className="col-md-4 col-form-label text-md-right">メールアドレス</label>
+                        <div className="col-md-6">
+                            <input id="email" className="form-control" type="email" onChange={changeEmail} />
+                        </div>
+                    </div>
+                    <div className="form-group row mb-4">
+                        <label for="pass" className="col-md-4 col-form-label text-md-right">パスワード</label>
+                        <div className="col-md-6">
+                            <input id="pass" className="form-control" type="password" onChange={changePassword} />
+                        </div>
+                    </div>
+                    {/* <div className="form-group row mb-4">
+                        <label for="passconform" className="col-md-4 col-form-label text-md-right">パスワード確認</label>
+                        <div className="col-md-6">
+                            <input id="passconform" className="form-control" type="password" onChange={changePasswordConform} />
+                        </div>
+                    </div> */}
+                    <div class="form-group row text-left">
+                        <div class="col-md-8 offset-md-4">
+                            <button type="submit" className="btn btn-danger" onClick={handleClick}>作成</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="submit" className="btn btn-secondary" onClick={handleUserClick}>ユーザー情報を取得</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </Layout>

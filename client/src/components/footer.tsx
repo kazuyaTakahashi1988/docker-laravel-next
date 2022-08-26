@@ -6,7 +6,7 @@ export const Footer = ({ copyright }: Props)  => {
 
     return (
         <footer>
-            <h2>{copyright}</h2>
+            <h4>{copyright}</h4>
         </footer>
     )
 }

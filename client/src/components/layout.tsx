@@ -1,4 +1,5 @@
 import Head from "next/head";
+import axios from 'axios'
 import { GA_TRACKING_ID } from "../lib/gtag";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -34,6 +35,17 @@ export const Layout = ({
   DEFAULT_KEY = process.env.DEFAULT_KEY,
   DEFAULT_THUM = SITE_HOST + `${process.env.DEFAULT_THUM}`,
 }: Props) => {
+
+  // SPA認証済みではないとアクセスできないAPI
+  axios.get(`${process.env.API_HOST}/api/user`, { withCredentials: true }).then((response: { data: any }) => {
+    // console.log(response.data)
+    const userAuth = response.data
+    console.log(userAuth)
+  }).catch((error: any) => {
+    const userAuth = null
+    console.log(userAuth)
+  })
+
   return (
     <>
       <Head>
@@ -92,6 +104,7 @@ export const Layout = ({
           content={pageType == `home` ? `website` : `article`}
         />
         <meta name="twitter:card" content="summary_large_image" />
+        <link href="//stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"></link>
       </Head>
 
       {/* -------------------------------------------------------
@@ -105,10 +118,14 @@ export const Layout = ({
         <main>{children}</main>
 
         {/* ▽ 共通フッター ▽ */}
-        <Footer copyright="&copy; Next.js Demo" />
+        <Footer copyright="&copy; Laravel × Next.js Demo" />
       </div>
     </>
   );
 };
 
 export default Layout;
+function userAuth(userAuth: any) {
+  throw new Error("Function not implemented.");
+}
+
