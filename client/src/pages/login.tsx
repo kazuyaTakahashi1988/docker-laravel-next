@@ -1,8 +1,9 @@
 import axios from 'axios'
-import { ChangeEvent, useState } from 'react'
-import { useRouter } from 'next/router';
+import { ChangeEvent, useState, useContext } from 'react'
+import { useRouter } from 'next/router'
 import { Props } from "../lib/props"
 import Layout from "../components/layout"
+import { AuthContext } from '../lib/AuthContext'
 
 type LoginParams = {
   email: string
@@ -10,6 +11,7 @@ type LoginParams = {
 }
 
 export const Login = ({ posts }: Props) => {
+  const auth = useContext(AuthContext);
   const router = useRouter();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -36,6 +38,10 @@ export const Login = ({ posts }: Props) => {
           )
           .then((response: { data: any }) => {
             // console.log(response.data)
+            auth?.setUserAuth(response.data);
+            localStorage.setItem('authJudge', true);
+            const authJudge = localStorage.getItem("authJudge");
+            console.log(authJudge);
             router.push('/');
           })
       })

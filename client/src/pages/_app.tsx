@@ -1,13 +1,14 @@
 import "../styles/style.scss";
 import type { AppProps } from "next/app";
 import { GA_TRACKING_ID, pageview } from '../lib/gtag';
+import { AuthProvider } from '../lib/AuthContext';
 import React, { useEffect } from "react";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  
+
   /* -------------------------------------------------------
-    ▽ ページ遷移毎 に発火するJS処理 ▽
-  ---------------------------------------------------------- */
+   ▽ ページ遷移毎 に発火するJS処理 ▽
+ ---------------------------------------------------------- */
   useEffect(() => {
 
     // フェードインのクラス付加
@@ -25,7 +26,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     ▽ Google Analytics の処理 ▽
   ---------------------------------------------------------- */
   useEffect(() => {
-    
+
     // GA_TRACKING_ID が設定されてる場合の処理
     if (!GA_TRACKING_ID) return;
     const handleRouteChange = (url: string) => {
@@ -35,13 +36,17 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
-    
+
   }, [router.events]);
 
   /* -------------------------------------------------------
     ▽ DOMレンダー ▽
   ---------------------------------------------------------- */
-  return <Component {...pageProps} />;
+  return (
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
+  );
 
 }
 

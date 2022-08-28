@@ -1,8 +1,9 @@
 import axios from 'axios'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState, useContext } from 'react'
 import { useRouter } from 'next/router';
 import { Props } from "../lib/props"
 import Layout from "../components/layout"
+import { AuthContext } from '../lib/AuthContext'
 
 type registerParams = {
     name: string
@@ -12,6 +13,7 @@ type registerParams = {
 }
 
 export const Register = ({ posts }: Props) => {
+    const auth = useContext(AuthContext);
     const router = useRouter();
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -46,6 +48,7 @@ export const Register = ({ posts }: Props) => {
                     )
                     .then((response: { data: any }) => {
                         // console.log(response.data)
+                        auth?.setUserAuth(response.data);
                         router.push('/');
                     })
             })

@@ -10,7 +10,6 @@ export const Home = ({ posts }: Props) => {
       console.log(response.data)
     })
   }
-
   return (
     <Layout
       /* -------------------------------------------------------

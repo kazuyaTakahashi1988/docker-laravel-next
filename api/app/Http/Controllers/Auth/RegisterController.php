@@ -30,7 +30,7 @@ class RegisterController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return response()->json(['name' => Auth::user()->email], 200);
+            return response()->json(Auth::user(), 200);
         }
 
         throw new Exception('アカウント作成に失敗しました。再度お試しください');

@@ -27,6 +27,7 @@ header {
       max-width: 200px;
       width: 100%;
       padding: 0 0 0 30px;
+      cursor: pointer;
     }
     .right_clmn{
       width: calc(100% - 240px);
@@ -46,6 +47,7 @@ header {
           transition: 0.4s;
           font-weight: 500;
           color: #e1122a;
+          cursor: pointer;
           &:hover{
             // color: #FF2D20;
           }
@@ -79,13 +81,15 @@ footer {
     min-height: 100vh;
     opacity: 0;
     // transform: translateY(20px);
-    transform: scale(1.05,1.05);
-    transition: 0.6s;
+    transform: scale(1.2,1.1);
+    transition: 0.4s;
+    filter: blur(100px);
   }
   &.active main{
     opacity: 1;
     // transform: translateY(0);
     transform: scale(1,1);
+    filter: blur(0px);
   }
   .sttl{
     background: #FDF5E6;
