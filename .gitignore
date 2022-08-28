@@ -1,5 +1,5 @@
-
-.DS_Store
+node_modules/*
 .data/*
-.data/mysql/*
-client/.next/*
+!.DS_Store
+uploads/*
+.next/*
