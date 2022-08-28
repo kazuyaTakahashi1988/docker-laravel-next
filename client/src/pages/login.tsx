@@ -39,9 +39,6 @@ export const Login = ({ posts }: Props) => {
           .then((response: { data: any }) => {
             // console.log(response.data)
             auth?.setUserAuth(response.data);
-            localStorage.setItem('authJudge', true);
-            const authJudge = localStorage.getItem("authJudge");
-            console.log(authJudge);
             router.push('/');
           })
       })
