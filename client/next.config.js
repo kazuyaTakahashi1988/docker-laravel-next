@@ -5,7 +5,7 @@ const nextConfig = {
       ▽ config情報 ▽
     ---------------------------------------------------------- */
     SITE_HOST: 'http://micro-cms.empty-service.com', // デプロイのホスト
-    SITE_NAME: 'デフォルトサイトネーム',
+    SITE_NAME: 'Q & A site - ナゼナゼのララベル -',
     DEFAULT_DES: 'デフォルトディスクリプション',
     DEFAULT_KEY: 'デフォルトキー',
     DEFAULT_THUM: '/ogp.jpg',

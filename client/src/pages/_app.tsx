@@ -11,14 +11,14 @@ function MyApp({ Component, pageProps, router }: AppProps) {
  ---------------------------------------------------------- */
   useEffect(() => {
 
-    // フェードインのクラス付加
-    setTimeout(() => {
-      document.getElementById("contswrap")?.classList.add("active");
-    }, 100);
-    return () => {
-      // フェードインのクラス削除
-      document.getElementById("contswrap")?.classList.remove("active");
-    };
+    // // フェードインのクラス付加
+    // setTimeout(() => {
+    //   document.getElementById("contswrap")?.classList.add("active");
+    // }, 100);
+    // return () => {
+    //   // フェードインのクラス削除
+    //   document.getElementById("contswrap")?.classList.remove("active");
+    // };
 
   }, [router.pathname, router.query]);
 

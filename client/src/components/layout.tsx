@@ -99,7 +99,7 @@ export const Layout = ({
       {/* -------------------------------------------------------
         ▽ コンテンツ ▽
       ---------------------------------------------------------- */}
-      <div className="contswrap" id="contswrap">
+      <div className="contswrap active" id="contswrap">
         {/* ▽ 共通ヘッダー ▽ */}
         <Header pageType={pageType} />
 

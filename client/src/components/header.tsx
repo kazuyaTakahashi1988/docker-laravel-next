@@ -51,7 +51,7 @@ export const Header = ({ pageType }: Props) => {
         <div className="right_clmn">
           <nav>
             <ul>
-              <li className={pageType == `post` ? `current` : ``}>
+              <li className={pageType == `posts` ? `current` : ``}>
                 <Link href="/posts">Q&A 一覧</Link>
               </li>
               {auth?.userAuth ?

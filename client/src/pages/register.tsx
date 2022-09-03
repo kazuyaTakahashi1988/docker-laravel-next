@@ -66,7 +66,7 @@ export const Register = ({ posts }: Props) => {
             /* -------------------------------------------------------
             ▽ 固有 meta ▽
             ---------------------------------------------------------- */
-            pageTtl="registerのタイトル"
+            pageTtl="アカウント作成"
             // pageDes=""
             // pageUrl=""
             // pageKey=""
@@ -82,19 +82,19 @@ export const Register = ({ posts }: Props) => {
             <div className="text-left">
                 <div className="card-body">
                     <div className="form-group row">
-                        <label for="name" className="col-md-4 col-form-label text-md-right">名前</label>
+                        <label className="col-md-4 col-form-label text-md-right">名前</label>
                         <div className="col-md-6">
                             <input id="name" className="form-control" type="text" onChange={changeName} />
                         </div>
                     </div>
                     <div className="form-group row mb-4">
-                        <label for="email" className="col-md-4 col-form-label text-md-right">メールアドレス</label>
+                        <label className="col-md-4 col-form-label text-md-right">メールアドレス</label>
                         <div className="col-md-6">
                             <input id="email" className="form-control" type="email" onChange={changeEmail} />
                         </div>
                     </div>
                     <div className="form-group row mb-4">
-                        <label for="pass" className="col-md-4 col-form-label text-md-right">パスワード</label>
+                        <label className="col-md-4 col-form-label text-md-right">パスワード</label>
                         <div className="col-md-6">
                             <input id="pass" className="form-control" type="password" onChange={changePassword} />
                         </div>
@@ -105,8 +105,8 @@ export const Register = ({ posts }: Props) => {
                             <input id="passconform" className="form-control" type="password" onChange={changePasswordConform} />
                         </div>
                     </div> */}
-                    <div class="form-group row text-left">
-                        <div class="col-md-8 offset-md-4">
+                    <div className="form-group row text-left">
+                        <div className="col-md-8 offset-md-4">
                             <button type="submit" className="btn btn-danger" onClick={handleClick}>作成</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="submit" className="btn btn-secondary" onClick={handleUserClick}>ユーザー情報を取得</button>
                         </div>
