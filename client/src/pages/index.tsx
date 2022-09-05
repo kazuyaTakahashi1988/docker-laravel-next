@@ -19,9 +19,9 @@ export const Home = () => {
   //fetcher関数の作成
   const { data, error } = useSWR(`${process.env.API_HOST}/api/home`, fetcher)
   //エラー
-  if (error) return <div>failed to load</div>
+  if (error) return <Layout>failed to load</Layout>
   //ロード中
-  if (!data) return <div>loading...</div>
+  if (!data) return <Layout>loading...</Layout>
   //成功
   const posts = data;
 
@@ -64,7 +64,7 @@ export const Home = () => {
                     className="thum-img"
                   />
                 </div>
-                {post.createdAt ? post.createdAt.slice(0, 10) : "00-00-00"}
+                {post.created_at ? post.created_at.slice(0, 10) : "00-00-00"}
                 <br />
                 <strong>{post.title}</strong>
                 {post.content

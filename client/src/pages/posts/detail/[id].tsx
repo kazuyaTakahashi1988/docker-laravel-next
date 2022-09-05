@@ -14,9 +14,9 @@ export const PostsDetail = () => {
     //fetcher関数の作成
     const { data, error } = useSWR(`${process.env.API_HOST}/api/posts/detail/${id}`, fetcher)
     //エラー
-    if (error) return <div>failed to load</div>
+    if (error) return <Layout>failed to load</Layout>
     //ロード中
-    if (!data) return <div>loading...</div>
+    if (!data) return <Layout>loading...</Layout>
     //成功
     const post = data;
 
@@ -39,7 +39,7 @@ export const PostsDetail = () => {
         ---------------------------------------------------------- */}
             <h2 className="sttl font-semibold text-xl">{post.title}</h2>
             <div className="post_contents-area">
-                <div className="data">{post.createdAt ? post.createdAt.slice(0, 10) : "00-00-00"}</div>
+                <div className="data">{post.created_at ? post.created_at.slice(0, 10) : "00-00-00"}</div>
                 <div className="cate">
                     <span>ユーザー:</span>
                     <Link href={`/posts/user/${post.user_id}`}>

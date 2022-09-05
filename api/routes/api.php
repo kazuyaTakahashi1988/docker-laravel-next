@@ -24,3 +24,5 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/detail/{id}', [PostController::class, 'detail']);
 Route::get('/posts/category/{id}', [PostController::class, 'category']);
 Route::get('/posts/user/{id}', [PostController::class, 'user']);
+Route::get('/posts/create/', [PostController::class, 'create']);
+Route::post('/posts/store/', [PostController::class, 'store']);
