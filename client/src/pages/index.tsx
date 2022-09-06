@@ -57,7 +57,7 @@ export const Home = () => {
                   <img
                     src={
                       post.image
-                        ? post.image
+                        ? `${process.env.API_HOST}/storage/image/${post.image}`
                         : "/dummy.png"
                     }
                     alt={post.title}

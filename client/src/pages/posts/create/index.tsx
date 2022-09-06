@@ -37,8 +37,7 @@ export const PostsCreate = () => {
         setContent(e.target.value)
     }
     const changeImage = (e: ChangeEvent<HTMLInputElement>) => {
-        setImage(e.target.files)
-        console.log(image)
+        setImage(e.target.files[0])
     }
 
     const handleClick = () => {
@@ -56,8 +55,7 @@ export const PostsCreate = () => {
                 }
             )
             .then((response: { data: any }) => {
-                console.log(response.data)
-                // router.push(`/posts/detail/${response.data.id}`);
+                router.push(`/posts/detail/${response.data.id}`);
             })
     }
 
@@ -81,7 +79,7 @@ export const PostsCreate = () => {
             // pageUrl=""
             // pageKey=""
             // pageThum=""
-            pageType="posts"
+            pageType="create"
         >
 
             {/* -------------------------------------------------------

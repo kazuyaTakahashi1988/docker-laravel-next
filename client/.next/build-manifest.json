@@ -45,6 +45,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/posts/category/[id].js"
     ],
+    "/posts/create": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/posts/create.js"
+    ],
     "/posts/detail/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -54,6 +59,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/posts/user/[id].js"
+    ],
+    "/register": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/register.js"
     ]
   },
   "ampFirstPages": []

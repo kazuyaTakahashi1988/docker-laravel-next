@@ -60,33 +60,23 @@ class PostController extends Controller
     ------------------------------------ */
     public function store(Request $request): JsonResponse
     {
-        if($request->image){
-            return response()->json($request , 200);
-        }
+        /* ▽ バリデートの処理 ▽ */
         $credentials = $request->validate([
             'title' => ['required', 'string'],
             'category' => ['required', 'string'],
             'content' => ['required', 'string'],
-            // 'image' => ['required', 'image'],
+            'image' => ['required', 'image'],
         ]);
 
+        /* ▽ 画像アップ時の処理 ▽ */
         if ($request->hasFile('image')) {
-            $post = Post::create([
-                'title' => $credentials['title'],
-                'user_id' => Auth::user()->id,
-                'category_id' => $credentials['category'],
-                'content' => $credentials['content'],
-                'image' => null,
-            ]);
-            /* ---------------------------
-                ▽ 画像アップ時の処理 ▽
-            --------------------------- */
-            $filePath = storage_path('app/public/image/'); // ストレージフォルダ取得
-            $filename = date('Ymd_His') . basename($credentials['image']) . '.jpg'; // ファイルネーム取得
-            return response()->json($filename , 200);
 
-            /* ▽ リサイズ・エンコード・圧縮処理 ▽ */
-            \Image::make($credentials['image'])->resize(
+            /* 保存フォルダ、保存ネームの指定 */
+            $filePath = storage_path('app/public/image/');
+            $filename = date('Ymd_His') . basename($request->image) . '.jpg';
+
+            /* リサイズ・エンコード・圧縮処理 */
+            \Image::make($request->image)->resize(
                 800,
                 null,
                 function ($constraint) {
@@ -94,12 +84,21 @@ class PostController extends Controller
                     $constraint->upsize(); // 小さい画像まま
                 }
             )->encode('jpg')->save($filePath . $filename, 70); // 圧縮比率70
-            $post->image = $filename;
-            $post->save();
-            return response()->json($post, 200);
         } else {
-            return response()->json("失敗", 200);
+            $filename = null;
         }
+
+        /* ▽ DB登録処理 ▽ */
+        $post = Post::create([
+            'title' => $credentials['title'],
+            'user_id' => Auth::user()->id,
+            'category_id' => $credentials['category'],
+            'content' => $credentials['content'],
+            'image' => $filename,
+        ]);
+
+        /* ▽ ▽ ▽ DB登録処理 ▽ ▽ ▽ */
+        return response()->json($post, 200);
     }
     /* ------------------------------------ 
         ▽ POST Q&A 詳細 ▽

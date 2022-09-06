@@ -30,7 +30,7 @@ export const PostsDetail = () => {
                 .replace(/(<([^>]+)>)/gi, "")
                 .slice(0, 130)}
             pageUrl={`posts/detail/${id}`}
-            pageThum={post.image && post.image}
+            pageThum={post.image && `${process.env.API_HOST}/storage/image/${post.image}`}
             pageType="posts"
         >
 
@@ -60,7 +60,7 @@ export const PostsDetail = () => {
                         <img
                             src={
                                 post.image
-                                    ? post.image
+                                    ? `${process.env.API_HOST}/storage/image/${post.image}`
                                     : "/dummy.png"
                             }
                             alt={post.title}
