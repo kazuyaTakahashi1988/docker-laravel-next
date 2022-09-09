@@ -18,7 +18,9 @@ export const PostsDetail = () => {
     //ロード中
     if (!data) return <Layout>loading...</Layout>
     //成功
+    console.log(data);
     const post = data;
+    // const comments = data;
 
     return (
         <Layout
@@ -72,7 +74,25 @@ export const PostsDetail = () => {
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     ></div>
                 </div>
+                <div className="d-block mt-5 border rounded btn btn-secondary">
+                    <Link href={`/posts/comment/${post.id}`}>
+                        <a className="d-block text-white p-2">+ コメントする</a>
+                    </Link>
+                </div>
             </div>
+
+
+            {post.comments.reverse().map((comment: any, index: number) => (
+                <div className="balloon1 p-4">
+                    <p className="text1 text-left">{comment.comment}</p>
+                    <div className="d-flex justify-content-between py-1 pt-3">
+                        <div><a href="/posts/user/<%= comment.User.id %>" className="user">
+                            <small><span className="text-dark">ユーザー：</span><span className="text2">{comment.user.name}</span></small>
+                        </a></div>
+                        <div><span className="text3"><small>{comment.created_at ? comment.created_at.slice(0, 10) : "00-00-00"}</small></span><span className="thumbup"><i className="fa fa-thumbs-o-up"></i></span></div>
+                    </div>
+                </div>
+            ))}
         </Layout>
     );
 };

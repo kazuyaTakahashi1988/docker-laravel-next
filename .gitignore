@@ -1,6 +1,5 @@
 node_modules/*
 .data/*
-.data/mysql**
-!.DS_Store
 uploads/*
-**/.next/*
+.next/*
+!.DS_Store

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\Post;
-use App\Models\User;
+// use App\Models\User;
+// use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
@@ -106,7 +107,8 @@ class PostController extends Controller
     public function detail($id)
     {
         $post = Post::findOrFail($id);
-        $post->load('category', 'user');
+        $post->load('comments', 'user', 'category');
+        $post->comments->load('user');
         return $post;
     }
 

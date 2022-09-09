@@ -20,6 +20,10 @@ class Post extends Model
     {
         return $this->belongsTo(\App\Models\Category::class, 'category_id');
     }
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\Comment::class, 'post_id', 'id')->orderBy('created_at', 'desc');
+    }
     // public function likes()
     // {
     //     // いいね用リレーション
