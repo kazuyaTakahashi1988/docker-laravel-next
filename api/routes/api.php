@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,10 @@ Route::get('/posts/user/{id}', [PostController::class, 'user']);
 Route::get('/posts/create/', [PostController::class, 'create']);
 
 /* ▽ POST ▽ */
-Route::post('/posts/store/', [PostController::class, 'store']);
-Route::post('/comment/store/{id}', [CommentController::class, 'store']);
+Route::post('/posts/store/', [PostController::class, 'store']); // 記事
+Route::post('/comment/store/{id}', [CommentController::class, 'store']);// コメント
+
+/* ▽ お気に入り処理 ▽ */
+Route::get('/posts/likes/{id}', [LikeController::class, 'index']);
+Route::get('/posts/like/{id}', [LikeController::class, 'like']); // いいね
+Route::get('/posts/unlike/{id}', [LikeController::class, 'unlike']); // いいね削除

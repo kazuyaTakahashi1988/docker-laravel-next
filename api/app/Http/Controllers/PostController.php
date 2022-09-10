@@ -107,9 +107,16 @@ class PostController extends Controller
     public function detail($id)
     {
         $post = Post::findOrFail($id);
-        $post->load('comments', 'user', 'category');
+        $post->load('comments', 'user', 'category', 'likes');
         $post->comments->load('user');
-        return $post;
+        $userAuth = Auth::user();
+        if (isset($userAuth)) {
+            $defaultLiked = $post->likes->where('user_id', $userAuth->id)->first();
+        } else {
+            $defaultLiked = false;
+        }
+        // return $post;
+        return response()->json(['post' => $post, 'defaultLiked' => $defaultLiked], 200);
     }
 
     /**

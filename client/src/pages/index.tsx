@@ -11,7 +11,7 @@ const fetcher = (url: string) => axios.get(url, { withCredentials: true }).then(
 export const Home = () => {
   // SPA認証済みではないとアクセスできないAPI
   const handleUserClick = () => {
-    axios.get(`${process.env.API_HOST}/api/home`, { withCredentials: true }).then((response: { data: any }) => {
+    axios.get(`${process.env.API_HOST}/api/user`, { withCredentials: true }).then((response: { data: any }) => {
       console.log(response.data)
     })
   }

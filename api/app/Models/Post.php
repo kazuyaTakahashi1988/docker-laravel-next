@@ -24,11 +24,11 @@ class Post extends Model
     {
         return $this->hasMany(\App\Models\Comment::class, 'post_id', 'id')->orderBy('created_at', 'desc');
     }
-    // public function likes()
-    // {
-    //     // いいね用リレーション
-    //     return $this->hasMany(\App\Models\Like::class, 'post_id', 'id');
-    // }
+    public function likes()
+    {
+        // いいね用リレーション
+        return $this->hasMany(\App\Models\Like::class, 'post_id', 'id');
+    }
     // public function answer()
     // {
     //     // ベストアンサー用リレーション

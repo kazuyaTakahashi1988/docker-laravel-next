@@ -56,8 +56,8 @@ export const Header = ({ pageType }: Props) => {
               </li>
               {auth?.userAuth ?
                 <>
-                  <li className={pageType == `like` ? `current` : ``}>
-                    <Link href="/posts/like">お気に入り 一覧</Link>
+                  <li className={pageType == `likes` ? `current` : ``}>
+                    <Link href="/posts/likes">お気に入り 一覧</Link>
                   </li>
                   <li className={pageType == `create` ? `current` : ``}>
                     <Link href="/posts/create">投稿する</Link>

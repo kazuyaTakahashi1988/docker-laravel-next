@@ -35,25 +35,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/posts.js"
     ],
-    "/posts/category/[id]": [
+    "/posts/create": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/posts/category/[id].js"
+      "static/chunks/pages/posts/create.js"
     ],
     "/posts/detail/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/posts/detail/[id].js"
     ],
-    "/posts/page/[id]": [
+    "/posts/likes": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/posts/page/[id].js"
-    ],
-    "/posts/user/[id]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/posts/user/[id].js"
+      "static/chunks/pages/posts/likes.js"
     ]
   },
   "ampFirstPages": []
