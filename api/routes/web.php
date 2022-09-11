@@ -21,5 +21,6 @@ Route::get('/', function () {
 
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/deleteuser', [LoginController::class, 'delete']);
 Route::post('/register', [RegisterController::class, 'register']);
 

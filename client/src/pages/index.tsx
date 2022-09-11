@@ -9,12 +9,13 @@ import SwiperComp from "../components/swiper";
 const fetcher = (url: string) => axios.get(url, { withCredentials: true }).then(res => res.data)
 
 export const Home = () => {
+
   // SPA認証済みではないとアクセスできないAPI
-  const handleUserClick = () => {
-    axios.get(`${process.env.API_HOST}/api/user`, { withCredentials: true }).then((response: { data: any }) => {
-      console.log(response.data)
-    })
-  }
+  // const handleUserClick = () => {
+  //   axios.get(`${process.env.API_HOST}/api/user`, { withCredentials: true }).then((response: { data: any }) => {
+  //     console.log(response.data)
+  //   })
+  // }
 
   //fetcher関数の作成
   const { data, error } = useSWR(`${process.env.API_HOST}/api/home`, fetcher)
@@ -75,7 +76,7 @@ export const Home = () => {
           </li>
         ))}
       </ul>
-      <button type="submit" className="btn btn-secondary" onClick={handleUserClick}>記事情報を取得</button>
+      {/* <button type="submit" className="btn btn-secondary" onClick={handleUserClick}>記事情報を取得</button> */}
 
     </Layout>
   );

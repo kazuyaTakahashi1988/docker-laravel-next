@@ -39,16 +39,9 @@ export const Login = ({ posts }: Props) => {
           .then((response: { data: any }) => {
             // console.log(response.data)
             auth?.setUserAuth(response.data);
-            router.push('/');
+            router.push('/dashboard');
           })
       })
-  }
-
-  // SPA認証済みではないとアクセスできないAPI
-  const handleUserClick = () => {
-    axios.get(`${process.env.API_HOST}/api/user`, { withCredentials: true }).then((response: { data: any }) => {
-      console.log(response.data)
-    })
   }
 
   return (
@@ -85,8 +78,7 @@ export const Login = ({ posts }: Props) => {
           </div>
           <div className="form-group row text-left">
             <div className="col-md-8 offset-md-4">
-              <button type="submit" className="btn btn-danger" onClick={handleClick}>ログイン</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button type="submit" className="btn btn-secondary" onClick={handleUserClick}>ユーザー情報を取得</button>
+              <button type="submit" className="px-5 btn btn-danger" onClick={handleClick}>ログイン</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
           </div>
         </div>

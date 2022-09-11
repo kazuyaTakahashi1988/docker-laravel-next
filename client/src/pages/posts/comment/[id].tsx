@@ -75,7 +75,7 @@ export const CommentCreate = () => {
                 </div>
                 <div className="form-group row text-left">
                     <div className="col-md-8 offset-md-4">
-                        <button type="submit" className="btn btn-danger" onClick={handleClick}>コメント作成</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="submit" className="px-5 btn btn-danger" onClick={handleClick}>コメントする</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
             </div>

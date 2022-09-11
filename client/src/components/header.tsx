@@ -12,25 +12,6 @@ type Props = {
 export const Header = ({ pageType }: Props) => {
   const auth = useContext(AuthContext);
   const router = useRouter();
-  const loginParams = '';
-  const logout = () => {
-    axios
-      // CSRF保護の初期化
-      .get(`${process.env.API_HOST}/sanctum/csrf-cookie`, { withCredentials: true })
-      .then(() => {
-        // ログアウト処理
-        axios
-          .post(
-            `${process.env.API_HOST}/logout`,
-            loginParams,
-            { withCredentials: true }
-          )
-          .then((response: { data: any }) => {
-            auth?.setUserAuth(false);
-            router.push('/');
-          })
-      })
-  }
 
   return (
     <header>
@@ -62,8 +43,9 @@ export const Header = ({ pageType }: Props) => {
                   <li className={pageType == `create` ? `current` : ``}>
                     <Link href="/posts/create">投稿する</Link>
                   </li>
-                  <li><a onClick={logout}><small>{`${auth?.userAuth.name}`}：
-                  ログアウト</small></a></li>
+                  <li className={pageType == `dashboard` ? `current` : ``}>
+                    <Link href="/dashboard">ダッシュボード</Link>
+                  </li>
                 </>
                 :
                 <>

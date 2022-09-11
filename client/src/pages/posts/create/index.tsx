@@ -121,7 +121,7 @@ export const PostsCreate = () => {
                 </div>
                 <div className="form-group row text-left">
                     <div className="col-md-8 offset-md-4">
-                        <button type="submit" className="btn btn-danger" onClick={handleClick}>作成</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="submit" className="px-5 btn btn-danger" onClick={handleClick}>投稿する</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
             </div>

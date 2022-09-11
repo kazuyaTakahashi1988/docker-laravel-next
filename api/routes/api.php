@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,11 @@ Route::post('/comment/store/{id}', [CommentController::class, 'store']);// コ�
 Route::get('/posts/likes/{id}', [LikeController::class, 'index']);
 Route::get('/posts/like/{id}', [LikeController::class, 'like']); // いいね
 Route::get('/posts/unlike/{id}', [LikeController::class, 'unlike']); // いいね削除
+
+
+/* ▽ ダッシュボード処理 ▽ */
+Route::post('/dashboard/profile', [DashboardController::class, 'index']);
+Route::post('/dashboard/password', [DashboardController::class, 'password']);
+// Route::post('/auth/profile', function (Request $request) {
+//     return $request->user();
+// });

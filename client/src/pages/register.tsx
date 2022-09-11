@@ -35,30 +35,27 @@ export const Register = ({ posts }: Props) => {
 
     const handleClick = () => {
         const registerParams: registerParams = { name, email, password, passwordConform }
-        axios
-            // CSRF保護の初期化
-            .get(`${process.env.API_HOST}/sanctum/csrf-cookie`, { withCredentials: true })
-            .then(() => {
-                // ログイン処理
-                axios
-                    .post(
-                        `${process.env.API_HOST}/register`,
-                        registerParams,
-                        { withCredentials: true }
-                    )
-                    .then((response: { data: any }) => {
-                        // console.log(response.data)
-                        auth?.setUserAuth(response.data);
-                        router.push('/');
-                    })
-            })
-    }
-
-    // SPA認証済みではないとアクセスできないAPI
-    const handleUserClick = () => {
-        axios.get(`${process.env.API_HOST}/api/user`, { withCredentials: true }).then((response: { data: any }) => {
-            console.log(response.data)
-        })
+        if ( password ==  passwordConform){
+            axios
+                // CSRF保護の初期化
+                .get(`${process.env.API_HOST}/sanctum/csrf-cookie`, { withCredentials: true })
+                .then(() => {
+                    // ログイン処理
+                    axios
+                        .post(
+                            `${process.env.API_HOST}/register`,
+                            registerParams,
+                            { withCredentials: true }
+                        )
+                        .then((response: { data: any }) => {
+                            console.log(response.data)
+                            auth?.setUserAuth(response.data);
+                            router.push('/dashboard');
+                        })
+                })
+        } else {
+            alert('パスワード確認が違います')
+        }
     }
 
     return (
@@ -99,16 +96,15 @@ export const Register = ({ posts }: Props) => {
                             <input id="pass" className="form-control" type="password" onChange={changePassword} />
                         </div>
                     </div>
-                    {/* <div className="form-group row mb-4">
+                    <div className="form-group row mb-4">
                         <label for="passconform" className="col-md-4 col-form-label text-md-right">パスワード確認</label>
                         <div className="col-md-6">
                             <input id="passconform" className="form-control" type="password" onChange={changePasswordConform} />
                         </div>
-                    </div> */}
+                    </div>
                     <div className="form-group row text-left">
                         <div className="col-md-8 offset-md-4">
-                            <button type="submit" className="btn btn-danger" onClick={handleClick}>作成</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="submit" className="btn btn-secondary" onClick={handleUserClick}>ユーザー情報を取得</button>
+                            <button type="submit" className="px-5 btn btn-danger" onClick={handleClick}>作成</button>
                         </div>
                     </div>
                 </div>
