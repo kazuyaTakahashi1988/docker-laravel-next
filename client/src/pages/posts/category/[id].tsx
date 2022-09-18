@@ -14,9 +14,9 @@ export const PostsCategory = () => {
     //fetcher関数の作成
     const { data, error } = useSWR(`${process.env.API_HOST}/api/posts/category/${id}`, fetcher)
     //エラー
-    if (error) return <Layout>failed to load</Layout>
+    if (error) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />failed to load</Layout>
     //ロード中
-    if (!data) return <Layout>loading...</Layout>
+    if (!data) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />loading...</Layout>
     //成功
     const posts = data;
 

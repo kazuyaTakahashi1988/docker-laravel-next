@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ChangeEvent, useState, useContext } from 'react'
+import React,{ ChangeEvent, useState, useContext } from 'react'
 import { useRouter } from 'next/router';
 import { Props } from "../lib/props"
 import Layout from "../components/layout"
@@ -48,7 +48,7 @@ export const Register = ({ posts }: Props) => {
                             { withCredentials: true }
                         )
                         .then((response: { data: any }) => {
-                            console.log(response.data)
+                            // console.log(response.data)
                             auth?.setUserAuth(response.data);
                             router.push('/dashboard');
                         })
@@ -97,7 +97,7 @@ export const Register = ({ posts }: Props) => {
                         </div>
                     </div>
                     <div className="form-group row mb-4">
-                        <label for="passconform" className="col-md-4 col-form-label text-md-right">パスワード確認</label>
+                        <label className="col-md-4 col-form-label text-md-right">パスワード確認</label>
                         <div className="col-md-6">
                             <input id="passconform" className="form-control" type="password" onChange={changePasswordConform} />
                         </div>

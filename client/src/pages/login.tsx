@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ChangeEvent, useState, useContext } from 'react'
+import React, { ChangeEvent, useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { Props } from "../lib/props"
 import Layout from "../components/layout"

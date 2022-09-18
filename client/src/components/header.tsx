@@ -43,9 +43,28 @@ export const Header = ({ pageType }: Props) => {
                   <li className={pageType == `create` ? `current` : ``}>
                     <Link href="/posts/create">投稿する</Link>
                   </li>
-                  <li className={pageType == `dashboard` ? `current` : ``}>
-                    <Link href="/dashboard">ダッシュボード</Link>
-                  </li>
+                  {auth?.userAuth.icon_img ?
+                    <>
+                      <li className={pageType == `dashboard` ? `current` : ``}>
+                        <Link href="/dashboard">
+                          <span className="thum">
+                            <img
+                              src={`${process.env.API_HOST}/storage/icon/${auth?.userAuth.icon_img}`}
+                              alt={auth?.userAuth.name}
+                              className="thum-img"
+                            />
+                          </span>
+                        </Link>
+                      </li>
+                    </>
+                    :
+                    <>
+                      <li className={pageType == `dashboard` ? `current` : ``}>
+                        <Link href="/dashboard">
+                          ダッシュボード
+                        </Link>
+                      </li>
+                    </>}
                 </>
                 :
                 <>

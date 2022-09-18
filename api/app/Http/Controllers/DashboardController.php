@@ -17,15 +17,36 @@ class DashboardController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $credentials = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email']
-        ]);
+        
         $user =  User::find(Auth::user()->id);
-        $user->name = $credentials['name'];
-        $user->email = $credentials['email'];
+        if(isset($request->name)){
+            $user->name = $request->name;
+        }
+        if(isset($request->name)){
+            $user->email = $request->email;
+        }
+        /* ▽ 画像アップ時の処理 ▽ */
+        if ($request->hasFile('image')) {
+
+            /* 保存フォルダ、保存ネームの指定 */
+            $filePath = storage_path('app/public/icon/');
+            $filename = date('Ymd_His') . basename($request->image) . '.jpg';
+
+            /* リサイズ・エンコード・圧縮処理 */
+            \Image::make($request->image)->resize(
+                800,
+                null,
+                function ($constraint) {
+                    $constraint->aspectRatio(); // 縦横比を保持
+                    $constraint->upsize(); // 小さい画像まま
+                }
+            )->encode('jpg')->save($filePath . $filename, 70); // 圧縮比率70
+
+            $user->icon_img = $filename;
+        }
+
         $user->save();
-        return response()->json($user->password, 200);
+        return response()->json($user, 200);
     }
     public function password(Request $request): JsonResponse
     {

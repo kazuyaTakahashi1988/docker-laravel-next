@@ -3,6 +3,7 @@ import useSWR from 'swr'
 import Link from "next/link";
 import Layout from "../../../components/layout";
 import { useRouter } from 'next/router'
+import React from 'react';
 
 //fetcher関数の作成
 const fetcher = (url: string) => axios.get(url, { withCredentials: true }).then(res => res.data)
@@ -14,9 +15,9 @@ export const PostsPage = () => {
     //fetcher関数の作成
     const { data, error } = useSWR(`${process.env.API_HOST}/api/posts?page=${id}`, fetcher)
     //エラー
-    if (error) return <Layout>failed to load</Layout>
+    if (error) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />failed to load</Layout>
     //ロード中
-    if (!data) return <Layout>loading...</Layout>
+    if (!data) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />loading...</Layout>
     //成功
     const posts = data;
 

@@ -5,7 +5,7 @@ import Layout from "../../../components/layout";
 import Likebutton from "../../../components/likebutton";
 import { useRouter } from 'next/router'
 import { AuthContext } from '../../../lib/AuthContext'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 
 //fetcher関数の作成
 const fetcher = (url: string) => axios.get(url, { withCredentials: true }).then(res => res.data)
@@ -19,14 +19,11 @@ export const PostsDetail = () => {
     //fetcher関数の作成
     const { data, error } = useSWR(`${process.env.API_HOST}/api/posts/detail/${id}`, fetcher)
     //エラー
-    if (error) return <Layout>failed to load</Layout>
+    if (error) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />failed to load</Layout>
     //ロード中
-    if (!data) return <Layout>loading...</Layout>
+    if (!data) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />loading...</Layout>
     //成功
     const post = data.post
-    console.log(data.defaultLiked)
-    console.log(data.post.likes.length)
-
 
     return (
         <Layout
@@ -91,7 +88,18 @@ export const PostsDetail = () => {
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     ></div>
                 </div>
-                <div className="data text-right">{post.created_at ? post.created_at.slice(0, 10) : "00-00-00"}</div>
+                <div className="data text-right">
+                    {post.user.icon_img && <span className='thumIcon'>
+                        <Link href={`/posts/user/${post.user_id}`}>
+                            <img
+                                src={`${process.env.API_HOST}/storage/icon/${post.user.icon_img}`}
+                                alt=""
+                                className="thum-img"
+                            />
+                        </Link>
+                    </span>}
+                    {post.created_at ? post.created_at.slice(0, 10) : "00-00-00"}
+                </div>
                 <div className="d-block mt-5 border rounded btn btn-secondary">
                     <Link href={`/posts/comment/${post.id}`}>
                         <a className="d-block text-white p-2">+ コメントする</a>
@@ -104,9 +112,22 @@ export const PostsDetail = () => {
                 <div className="balloon1 p-4">
                     <p className="text1 text-left">{comment.comment}</p>
                     <div className="d-flex justify-content-between py-1 pt-3">
-                        <div><a href={`/posts/user/${comment.user.id}`} className="user">
-                            <small><span className="text-dark">ユーザー：</span><span className="text2">{comment.user.name}</span></small>
-                        </a></div>
+                        <div>
+                            <Link href={`/posts/user/${comment.user.id}`} >
+                                <a className="user">
+                                    <small>
+                                        <span className="text-dark">ユーザー：</span>
+                                        {comment.user.icon_img && <span className='thumIcon'>
+                                            <img
+                                                src={`${process.env.API_HOST}/storage/icon/${comment.user.icon_img}`}
+                                                alt=""
+                                                className="thum-img"
+                                            />
+                                        </span>}
+                                        <span className="text2">{comment.user.name}</span>
+                                    </small>
+                                </a>
+                            </Link></div>
                         <div><span className="text3"><small>{comment.created_at ? comment.created_at.slice(0, 10) : "00-00-00"}</small></span><span className="thumbup"><i className="fa fa-thumbs-o-up"></i></span></div>
                     </div>
                 </div>

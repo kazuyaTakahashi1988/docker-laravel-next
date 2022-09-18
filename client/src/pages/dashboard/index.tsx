@@ -1,15 +1,15 @@
 import axios from 'axios'
 import useSWR from 'swr'
-import Link from "next/link";
 import { useRouter } from 'next/router'
 import Layout from "../../components/layout";
 import { AuthContext } from '../../lib/AuthContext'
-import { ChangeEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 
 
 type profileParams = {
     name: string
     email: string
+    image: any
 }
 type passwordParams = {
     password: string
@@ -48,14 +48,18 @@ export const Home = () => {
     /* ▽ プロフィール編集処理 ▽ */
     const [name, setName] = useState(auth?.userAuth.name)
     const [email, setEmail] = useState(auth?.userAuth.email)
+    const [image, setImage] = useState();
     const changeName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
     }
     const changeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
     }
+    const changeImage = (e: ChangeEvent<HTMLInputElement>) => {
+        setImage(e.target.files[0])
+    }
     const handleClickProfile = () => {
-        const profileParams: profileParams = { name, email }
+        const profileParams: profileParams = { name, email, image }
 
         // プロフィール編集処理
         axios
@@ -70,9 +74,9 @@ export const Home = () => {
                 }
             )
             .then((response: { data: any }) => {
-                console.log(response.data)
+                // console.log(response.data)
                 alert('プロフィールの編集に成功しました');
-                // auth?.setUserAuth(response.data);
+                auth?.setUserAuth(response.data);
             })
     }
 
@@ -106,7 +110,7 @@ export const Home = () => {
                     }
                 )
                 .then((response: { data: any }) => {
-                    console.log(response.data)
+                    // console.log(response.data)
                     alert(response.data);
                     // auth?.setUserAuth(response.data);
                 })
@@ -129,7 +133,7 @@ export const Home = () => {
                         { withCredentials: true }
                     )
                     .then((response: { data: any }) => {
-                        console.log(response.data)
+                        // console.log(response.data)
                         auth?.setUserAuth(false);
                         router.push('/');
                     })
@@ -140,9 +144,9 @@ export const Home = () => {
     //fetcher関数の作成
     const { data, error } = useSWR(`${process.env.API_HOST}/api/user`, fetcher)
     //エラー
-    if (error) return <Layout>failed to load</Layout>
+    if (error) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />failed to load</Layout>
     //ロード中
-    if (!data) return <Layout>loading...</Layout>
+    if (!data) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />loading...</Layout>
     //成功
     const user = data;
 
@@ -171,13 +175,19 @@ export const Home = () => {
                     <div className="form-group row">
                         <label className="col-md-4 col-form-label text-md-right">名前</label>
                         <div className="col-md-6">
-                            <input id="name" className="form-control" type="text" onChange={changeName} placeholder={`${user.name}`} />
+                            <input id="name" className="form-control" name="names" type="text" onChange={changeName} placeholder={`${user.name}`} />
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-md-4 col-form-label text-md-right">メールアドレス</label>
+                        <div className="col-md-6">
+                            <input id="email" className="form-control" type="email" name="email" onChange={changeEmail} placeholder={`${user.email}`} />
                         </div>
                     </div>
                     <div className="form-group row mb-4">
-                        <label className="col-md-4 col-form-label text-md-right">メールアドレス</label>
+                        <label className="col-md-4 col-form-label text-md-right">アイコン画像</label>
                         <div className="col-md-6">
-                            <input id="email" className="form-control" type="email" onChange={changeEmail} placeholder={`${user.email}`} />
+                        <input name="image" type="file" onChange={changeImage} />
                         </div>
                     </div>
                     <div className="form-group row text-left">

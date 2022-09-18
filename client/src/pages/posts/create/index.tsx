@@ -1,6 +1,6 @@
 import axios from 'axios'
 import useSWR from 'swr'
-import { ChangeEvent, useState, useContext } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { useRouter } from 'next/router';
 import Layout from "../../../components/layout"
 
@@ -63,9 +63,9 @@ export const PostsCreate = () => {
     //fetcher関数の作成
     const { data, error } = useSWR(`${process.env.API_HOST}/api/posts/create`, fetcher)
     //エラー
-    if (error) return <Layout>failed to load</Layout>
+    if (error) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />failed to load</Layout>
     //ロード中
-    if (!data) return <Layout>loading...</Layout>
+    if (!data) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />loading...</Layout>
     //成功
     const cateOptions = data;
 

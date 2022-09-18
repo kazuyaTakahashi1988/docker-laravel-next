@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ChangeEvent, useState, useContext } from 'react'
+import React, { ChangeEvent, useState, useContext } from 'react'
 import { useRouter } from 'next/router';
 import Layout from "../../../components/layout"
 import { AuthContext } from '../../../lib/AuthContext'
@@ -24,7 +24,6 @@ export const CommentCreate = () => {
 
     const changeComment = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setComment(e.target.value)
-        console.log(e.target.value);
     }
 
     const handleClick = () => {
