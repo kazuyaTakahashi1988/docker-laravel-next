@@ -2,6 +2,7 @@ import axios from 'axios'
 import useSWR from 'swr'
 import Link from "next/link";
 import Layout from "../components/layout";
+import Notice from "../components/notice";
 import SwiperComp from "../components/swiper";
 import React from 'react';
 
@@ -40,6 +41,8 @@ export const Home = () => {
       pageType="home"
     >
 
+      <Notice />
+      
       {/* -------------------------------------------------------
          ▽ スワイパースライダー ▽
        ---------------------------------------------------------- */}
