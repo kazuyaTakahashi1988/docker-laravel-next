@@ -22,7 +22,7 @@ services:
     - PMA_HOST=api-mysql
    restart: always
    ports:
-    - "3000:80"
+    - "3030:80"
    networks:
     - docker-networks-api
 
@@ -47,7 +47,7 @@ services:
     context: client
     dockerfile: ./Dockerfile
    ports:
-    - 80:3000
+    - 3000:3000
    init: true
    volumes:
     - ./client:/usr/src/app
