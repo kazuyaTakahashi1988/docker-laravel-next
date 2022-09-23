@@ -15,6 +15,11 @@
     "static/development/_middlewareManifest.js"
   ],
   "pages": {
+    "/": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/index.js"
+    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -35,20 +40,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/posts/comment/[id].js"
     ],
-    "/posts/create": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/posts/create.js"
-    ],
     "/posts/detail/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/posts/detail/[id].js"
-    ],
-    "/posts/likes": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/posts/likes.js"
     ]
   },
   "ampFirstPages": []
