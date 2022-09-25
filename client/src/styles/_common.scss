@@ -355,7 +355,7 @@ footer {
 
   .thumIcon {
     display: block!important;
-    margin: 0 auto 10px;
+    margin: 0 auto;
     width: 50px;
     height: 50px;
     position: relative;
@@ -394,13 +394,17 @@ footer {
 }
 .balloon1 .user {
   position: absolute;
-  top: 30px;
+  top: 5px;
   left: -145px;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: bold;
   width: 125px;
   text-align: center;
   display: inline-block;
+  .text2{
+    color: #ff2d20;
+    font-weight: bold;
+  }
 }
 .balloon1 .user b {
   display: block;

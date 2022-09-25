@@ -23,7 +23,7 @@ export const Notice = ({ pageType }: Props) => {
                 <>
                     <div className="mt-6 text-gray-600">
                         <b className="clo">「Q &amp; A site - ナゼナゼのララベル -」</b> は質問を投稿、及び回答することができるC to C サービスです。<br /><br />
-                        質問者の投稿に気軽にコメントとリプライを送ることができ、名前とメールアドレスの登録だけで簡単に始められます。<br />下記のボタンからアカウント作成して本サイトをご活用ください。
+                        質問者の投稿に気軽にコメントを送ることができ、名前とメールアドレスの登録だけで簡単に始められます。<br />下記のボタンからアカウント作成して本サイトをご活用ください。
                         <div className="wButton mx-auto sm:block space-x-8 sm:flex">
                             <Link href="/login">▷ ログインはこちら</Link>
                             <Link href="/register">▷ アカウント作成はこちら</Link>
