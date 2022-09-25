@@ -3,3 +3,4 @@ node_modules/*
 uploads/*
 .next/*
 !.DS_Store
+.DS_Store
