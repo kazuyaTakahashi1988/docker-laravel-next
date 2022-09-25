@@ -6,7 +6,7 @@ $ docker-compose up -d　
 ```
 　　　　　↓↓↓↓
      
-# Open "[http://localhost:3030](http://localhost:3030/)" in your browser　
+# Open "[http://localhost:3030](http://localhost:3030/){:target="_blank"}" in your browser　
 アイパス『 root 』でphpMyAdminにログインできます。
 
 DB『 api_db 』を作成、照合順序は『 utf8_general_ci 』としてください。
@@ -27,4 +27,4 @@ $ php artisan db:seed
 ```
 
 　　　　　↓↓↓↓
-# Open "[http://localhost:3000](http://localhost:3000/)" in your browser　
+# Open "[http://localhost:3000](http://localhost:3000/){:target="_blank"}" in your browser　
