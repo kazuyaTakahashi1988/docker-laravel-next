@@ -1,5 +1,5 @@
 import axios from 'axios'
-import useSWR from 'swr'
+// import useSWR from 'swr'
 import Link from "next/link";
 import Layout from "../../../components/layout";
 import Likebutton from "../../../components/likebutton";
@@ -10,20 +10,20 @@ import React, { useContext } from 'react'
 //fetcher関数の作成
 const fetcher = (url: string) => axios.get(url, { withCredentials: true }).then(res => res.data)
 
-export const PostsDetail = () => {
+export async function getServerSideProps(context) {
+    const { id } = context.query;
+    const data = await fetcher(`${process.env.DETAILE_FETCH}/api/posts/detail/${id}`);
+    return { props: { data } }
+}
+
+
+export const PostsDetail = (props) => {
+    console.log(props);
 
     const auth = useContext(AuthContext);
     const router = useRouter()
     const { id } = router.query
-
-    //fetcher関数の作成
-    const { data, error } = useSWR(`${process.env.API_HOST}/api/posts/detail/${id}`, fetcher)
-    //エラー
-    if (error) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />failed to load</Layout>
-    //ロード中
-    if (!data) return <Layout><img src="/loading.gif" className='loading' alt="" /><br />loading...</Layout>
-    //成功
-    const post = data.post
+    const post = props.data.post
 
     return (
         <Layout
@@ -47,11 +47,11 @@ export const PostsDetail = () => {
                 <div className="cate">
                     {auth?.userAuth ?
                         <>
-                            <Likebutton likeJudgeInt={data.defaultLiked} likeCountInt={data.post.likes.length} idParam={id} />
+                            <Likebutton likeJudgeInt={props.data.defaultLiked} likeCountInt={props.data.post.likes.length} idParam={id} />
                         </>
                         :
                         <>
-                            <b><span>Like:</span> {data.post.likes.length}</b>
+                            <b><span>Like:</span> {props.data.post.likes.length}</b>
                         </>
                     }
                 </div>
